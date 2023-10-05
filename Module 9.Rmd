@@ -21,4 +21,37 @@ for (i in 1:1000) {
 }
 hist(x, breaks = seq(from = lambda - 4 * sqrt(lambda)/sqrt(n), to = lambda +
     4 * sqrt(lambda)/sqrt(n), length.out = 20), probability = TRUE)
+
+curve(dnorm(x, 0, 1), -4, 4, ylim = c(0, 0.8))
+z <- (x - lambda)/pop_se
+hist(z, breaks = seq(from = -4, to = 4, length.out = 20), probability = TRUE,
+    add = TRUE)
+
+n <- 100
+x <- NULL
+for (i in 1:1000) {
+    x[i] <- sum(rpois(n = n, lambda = lambda))
+}
+hist(x, breaks = seq(min(x), max(x), length.out = 20), probability = TRUE)
+```
+
+```{r CI}
+n <- 1000
+x <- 856
+phat <- x/n 
+phat
+
+n * phat
+n * (1 - phat)
+pop_se <- sqrt((phat) * (1 - phat)/n)
+curve(dnorm(x, mean = phat, sd = pop_se), phat - 4 * pop_se, phat + 4 * pop_se)
+upper <- phat + qnorm(0.975) * pop_se
+lower <- phat - qnorm(0.975) * pop_se
+ci <- c(lower, upper)
+polygon(cbind(c(ci[1], seq(from = ci[1], to = ci[2], length.out = 1000), ci[2]),
+    c(0, dnorm(seq(from = ci[1], to = ci[2], length.out = 1000), mean = phat,
+        sd = pop_se), 0)), border = "gray", col = "green")
+abline(v = ci)
+abline(h = 0)
+
 ```
