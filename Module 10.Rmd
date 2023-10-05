@@ -1,0 +1,33 @@
+---
+title: "Module 10"
+author: "Emily Yang"
+date: "`r Sys.Date()`"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r 1 sample z & t}
+library(curl)
+f <- curl("https://raw.githubusercontent.com/fuzzyatelin/fuzzyatelin.github.io/master/AN588_Fall23/vervet-weights.csv")
+d <- read.csv(f, header = TRUE, sep = ",", stringsAsFactors = FALSE)
+head(d)
+mean(d$weight)
+```
+
+H0: Vervets trapped in 2016 are not heavier than Vervets trapped earlier seasons. <br>
+HA: Vervets trapped in 2016 are heavier than Vervets trapped earlier seasons.<br>
+Hypothesis: upper one-tailed test <br>
+Calculate the mean, standard deviation, and SEM from our sample<br>
+
+
+```{r Upper test}
+mu <- 4.9
+x <- d$weight
+m <- mean(x)
+s <- sd(x)
+n <- length(x)
+sem <- s/sqrt(n)
+```
