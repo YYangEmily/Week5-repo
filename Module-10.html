@@ -357,6 +357,9 @@ display: none;
 </div>
 
 
+<div id="one-sample-z-and-t-tests" class="section level2">
+<h2>One Sample Z and T Tests</h2>
+<p>Is the null population the one we sampled from.</p>
 <pre class="r"><code>library(curl)</code></pre>
 <pre><code>## Using libcurl 8.1.2 with LibreSSL/3.3.6</code></pre>
 <pre class="r"><code>f &lt;- curl(&quot;https://raw.githubusercontent.com/fuzzyatelin/fuzzyatelin.github.io/master/AN588_Fall23/vervet-weights.csv&quot;)
@@ -374,14 +377,14 @@ head(d)</code></pre>
 <p>H0: Vervets trapped in 2016 are not heavier than Vervets trapped
 earlier seasons. <br> HA: Vervets trapped in 2016 are heavier than
 Vervets trapped earlier seasons.<br> Hypothesis: upper one-tailed test
-<br> Calculate the mean, standard deviation, and SEM from our
-sample<br></p>
+<br></p>
 <pre class="r"><code>mu &lt;- 4.9
 x &lt;- d$weight
 m &lt;- mean(x)
 s &lt;- sd(x)
 n &lt;- length(x)
 sem &lt;- s/sqrt(n)</code></pre>
+</div>
 
 
 
